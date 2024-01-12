@@ -1,0 +1,1 @@
+2024-01-02 15:41:05 ERROR [dao.py::58] DAO Cart {'sql': "INSERT INTO carts (user_id, product_id) VALUES(100628717100859394, {'productId': '100649195890802688'})", 'err': "1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''productId': '100649195890802688'})' at line 1"}

@@ -1,0 +1,15 @@
+RewriteEngine on # включаємо маршрутизацію
+
+RewriteRule ^(\w\w)/envs/(.*)$      envs.py?lang=$1             [END,QSA]
+RewriteRule ^(\w\w)/product/(.*)$   product.py?lang=$1&id=$2    [END,QSA]
+RewriteRule ^(\w\w)/cart/(.*)$      cart.py?lang=$1&id=$2       [END,QSA]
+
+RewriteRule ^cart$                  api/cart.py                 [END,QSA]
+RewriteRule ^product$               api/product.py              [END,QSA]
+RewriteRule ^auth$                  api/auth.py                 [END,QSA]
+
+RewriteCond %{REQUEST_FILENAME}     !-f
+RewriteCond %{REQUEST_FILENAME}     !-d
+
+RewriteRule .*                      index.py                    [END,QSA] # всі запити на index.py
+

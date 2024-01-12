@@ -1,0 +1,33 @@
+CGI - Common Gateway Interface - інтерфейс спільного шлюзу
+Протокол, за яким веб-сервер, як програма яка розбирає HTTP запит, передає результати розбору іншій програмі (скрипту), 
+одержує результат його роботи та формує з нього відповідь.
+
+HTTP Request ----> :80 <----> WebServer (Apache) <----> Python
+
+Альтернатива - власний сервер або комплекс ПЗ із засобами оброблення HTTP-запитів
+
+Переваги-недоліки:
+CGI - високоефективний сервер, можна підібрати сертифікований але це окремий продукт, що потребує встановлення.
+Власний сервер/модуль - цілісність ПЗ, але частіше за все, є питання із сертифікацією, а також гірші показники за часом роботи.
+
+Налаштування.
+Apache 
+ - встановити: або як самостійне ПЗ, або у збірці (XAMPP, Danver, OpenServer)
+ - налаштовуємо локальний (віртуальний) хостинг
+  = відкриваємо папку з налаштуваннями Apache (/xampp/apache/conf)
+  = редагуємо файл /extra/httpd.vhosts.conf -- додаємо у кінці файла:
+  <VirtualHost *:80>
+    ServerAdmin webmaster@localhost
+    DocumentRoot "C:/Users/bekke/OneDrive/Desktop/Uni/serv_apps_dev/Intro/cgi"
+    ServerName py201.loc
+    ServerAlias www.py201.loc
+    ErrorLog "C:/Users/bekke/OneDrive/Desktop/Uni/serv_apps_dev/Intro/cgi/error.log"
+    CustomLog "C:/Users/bekke/OneDrive/Desktop/Uni/serv_apps_dev/Intro/cgi/access.log" common
+    <Directory "C:/Users/bekke/OneDrive/Desktop/Uni/serv_apps_dev/Intro/cgi">
+	AllowOverride All
+	Options -Indexes +ExecCGI
+	AddHandler cgi-script .py
+	Require all granted
+    </Directory>
+  </VirtualHost>
+  = Зберігаємо та перезапускаємо Apache. У разі успіху у папці з проєктом створюються access.log та error.log

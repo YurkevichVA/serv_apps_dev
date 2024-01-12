@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col s6 m4 l3 xl2" ng-repeat="p in products">
+        <div class="card">
+            <div class="card-image">
+                <img ng-src="/static/img/{{p.img_url}}" width="150" />
+                <a class="btn-floating halfway-fab waves-effect waves-light red" onclick="addCartClick(event)" data-product-id="{{p.id}}">
+                    <i class="material-icons">add</i>
+                </a>
+            </div>
+            <div class="card-content">
+                <span class="card-title product-card-title" title="{{p.name}}">{{p.name}}</span>
+                <p>{{p.price}}</p>
+            </div>
+            <p></p>
+        </div>
+    </div>
+</div>
